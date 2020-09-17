@@ -10,9 +10,10 @@ import {
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table";
-import { sortData } from "./util";
+import { sortData, prettyPrintStat } from "./util";
 import LineGraph from "./LineGraph";
 import "leaflet/dist/leaflet.css";
+import numeral from "numeral";
 
 function App() {
   const [countries, setcountries] = useState([]);
@@ -100,18 +101,18 @@ function App() {
         <div className="app__status">
           <InfoBox
             title="Corona-Virus Cases"
-            cases={countryInfo.todayCases}
-            total={countryInfo.cases}
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            total={numeral(countryInfo.cases).format("0.0a")}
           ></InfoBox>
           <InfoBox
             title="Recovered Cases"
-            cases={countryInfo.todayRecovered}
-            total={countryInfo.recovered}
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            total={numeral(countryInfo.recovered).format("0.0a")}
           ></InfoBox>
           <InfoBox
             title="Deaths Cases"
-            cases={countryInfo.todayDeaths}
-            total={countryInfo.deaths}
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={numeral(countryInfo.deaths).format("0.0a")}
           ></InfoBox>
         </div>
 
