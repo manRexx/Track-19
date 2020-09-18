@@ -54,7 +54,11 @@ function App() {
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
-    setCountry(countryCode);
+    if (countryCode === "worldwide") {
+      setCountry("worldwide");
+    } else {
+      setCountry(countryCode);
+    }
 
     //https://disease.sh/v3/covid-19/all
     // https://disease.sh/v3/covid-19/countries/USA?strict=true
@@ -80,7 +84,11 @@ function App() {
     <div className="app">
       <div className="app__left">
         <div className="app__header">
-          <h1>COVID-19 TRAKER</h1>
+          <div>
+            <h1>COVID-19 TRAKER</h1>
+            <h4>Data fetched by API calls.</h4>
+          </div>
+
           <FormControl>
             <Select
               variant="outlined"
